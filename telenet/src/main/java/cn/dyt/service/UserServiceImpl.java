@@ -105,14 +105,6 @@ public class UserServiceImpl implements UserService {
 	@Override
 	public List<UserInfo> findAll(IndexVo vo) {
 		List<UserInfo> list = userDao.findAll(vo);
-		/*for(UserInfo s : list){
-			Department de = departmentDao.getDepartmentById(s.getdId());
-			if(de!=null){
-				s.setDepartment(de.getName());
-			}else{
-				s.setDepartment("/");
-			}
-		}*/
 		return list;
 	}
 
@@ -132,7 +124,7 @@ public class UserServiceImpl implements UserService {
 		boolean result = false;
 		String reason = "";
 		UserInfo su = userDao.getUserByUsername(vo);
-		if(su==null){
+		if(su==null || (su!=null && su.getId()==vo.getId())){
 			Integer count = 0;
 			if(vo.getId()!=null){
 				count = userDao.edit(vo);

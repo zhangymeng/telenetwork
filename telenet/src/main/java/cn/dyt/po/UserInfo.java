@@ -2,11 +2,13 @@ package cn.dyt.po;
 
 import java.sql.Timestamp;
 
+import cn.dyt.util.Tools;
+
 public class UserInfo {
 	private Integer id;
 	private String username;
 	private String password;
-	private Timestamp createDate;
+	private String createDate;
 	private Integer roleId;
 	private Integer isDel;
 
@@ -42,11 +44,11 @@ public class UserInfo {
 	public void setPassword(String password) {
 		this.password = password;
 	}
-	public Timestamp getCreateDate() {
+	public String getCreateDate() {
 		return createDate;
 	}
 	public void setCreateDate(Timestamp createDate) {
-		this.createDate = createDate;
+		this.createDate = Tools.foarmatDateTime(createDate);
 	}
 	public Integer getRoleId() {
 		return roleId;

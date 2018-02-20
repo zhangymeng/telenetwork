@@ -5,12 +5,21 @@ import java.sql.Timestamp;
 public class IndexVo {
 	private Integer id;
 	private String username;
+	private String password;
 	private Timestamp createDate;
 	private String timeText;
 	private Integer cId;
 	private Integer type;
 	private String name;
 	
+	public String getPassword() {
+		return password;
+	}
+
+	public void setPassword(String password) {
+		this.password = password;
+	}
+
 	public String getName() {
 		return name;
 	}
