@@ -33,6 +33,9 @@
     
     <select id="findAll" resultMap="customerMap" resultType="cn.dyt.po.Customer" parameterType="cn.dyt.vo.IndexVo">
 	  select * from t_customer where is_del=1
+	  <if test="type!=null">
+	  and type=#{type}
+	  </if>
 	</select>
 	
 	<update id="del" parameterType="cn.dyt.vo.IndexVo">

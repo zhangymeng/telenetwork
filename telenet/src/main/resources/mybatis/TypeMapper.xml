@@ -8,10 +8,27 @@
 	</resultMap>
 	
 	<select id="findAll" resultMap="typeMap" resultType="cn.dyt.po.CustomerType" parameterType="cn.dyt.vo.IndexVo">
-	  select * from t_customer_type
+	  select * from t_customer_type where 1=1
+	  <if test="name!=null">
+	  and name=#{name}
+	  </if>
 	</select>
 	
 	<select id="getById" resultMap="typeMap" resultType="cn.dyt.po.CustomerType" parameterType="java.lang.Integer">
 	  select * from t_customer_type where id=#{id}
 	</select>
+	
+	<delete id="del" parameterType="cn.dyt.vo.IndexVo">
+		delete from t_customer_type where id=#{id}
+	</delete>
+	
+	<insert id="add" parameterType="cn.dyt.po.Customer" useGeneratedKeys="true" keyProperty="id">
+	  insert into t_customer_type(name) 
+	  values(#{name})
+	</insert> 
+	
+	<update id="edit" parameterType="cn.dyt.po.Customer">
+  	  update t_customer_type set name=#{name}
+	  where id=#{id}
+    </update>
 </mapper>

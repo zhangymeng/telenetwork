@@ -84,4 +84,41 @@ public class CustomerController {
 		}
         return map;
     }
+	
+	@RequestMapping("/typePage")
+    public ModelAndView typePage(HttpServletRequest request,IndexVo vo){
+		ModelMap model = new ModelMap();
+        return new ModelAndView("customerType", model);
+    }
+	
+	@RequestMapping("/allType")
+	@ResponseBody
+    public Map<String,Object> allType(HttpServletRequest request,IndexVo vo){
+		Map<String,Object> map = new HashMap<String,Object>();
+		List<CustomerType> list = customerTypeService.findAll(vo);
+		map.put("code", 0);
+		map.put("msg", "");
+		map.put("count", list.size());
+		map.put("data", list);
+        return map;
+    }
+	
+	@RequestMapping("/delType")
+	@ResponseBody
+    public Map<String,Object> delType(HttpServletRequest request,IndexVo vo){
+		Map<String,Object> map = customerTypeService.del(vo);
+        return map;
+    }
+	
+	@RequestMapping("/addType")
+	@ResponseBody
+    public Map<String,Object> addType(HttpServletRequest request,Customer vo){
+		Map<String,Object> map = new HashMap<String,Object>();
+		if(vo.getId()!=null){
+			map = customerTypeService.edit(vo);
+		}else{
+			map = customerTypeService.add(vo);
+		}
+        return map;
+    }
 }
