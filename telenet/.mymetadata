@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project-module
+  type="WEB"
+  name="telenet"
+  id="myeclipse.1519111736016"
+  context-root="/imitate"
+  j2ee-spec="1.7"
+  archive="telenet.war">
+  <attributes>
+    <attribute name="webrootdir" value="src/main/webapp" />
+  </attributes>
+</project-module>
+

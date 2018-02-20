@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.dyt.dao.CustomerDao">
+	
+	<resultMap  id="customerMap" type="cn.dyt.po.Customer">
+		<id column="id" property="id"/>
+		<result column="name" property="name"/>
+		<result column="sex" property="sex"/>
+		<result column="create_date" property="createDate"/>
+		<result column="phone" property="phone"/>
+		<result column="birthday" property="birthday"/>
+		<result column="type" property="type"/>
+		<result column="is_del" property="isDel"/>
+	</resultMap>
+
+	<select id="getById" resultMap="customerMap" resultType="cn.dyt.po.Customer" parameterType="java.lang.Integer">
+	  select * from t_customer where id=#{id}
+	</select>
+	
+	<select id="getByPhone" resultMap="customerMap" resultType="cn.dyt.po.Customer" parameterType="java.lang.String">
+	  select * from t_customer where phone=#{phone} limit 1
+	</select>
+	
+	<update id="edit" parameterType="cn.dyt.po.Customer">
+  	  update t_customer 
+  	  <trim prefix="set" suffixOverrides=",">
+	  	<if test="type!=null" >
+	    	type=#{type},
+	    </if>
+	  </trim>
+	  where id=#{id}
+    </update>
+    
+    <select id="findAll" resultMap="customerMap" resultType="cn.dyt.po.Customer" parameterType="cn.dyt.vo.IndexVo">
+	  select * from t_customer where is_del=1
+	</select>
+	
+	<update id="del" parameterType="cn.dyt.vo.IndexVo">
+		 update t_customer set is_del=0 where id=#{id}
+	</update>
+	
+	<insert id="add" parameterType="cn.dyt.po.Customer" useGeneratedKeys="true" keyProperty="id">
+	  insert into t_customer(name,sex,create_date,phone,birthday,type,is_del) 
+	  values(#{name},#{sex},#{createDate},#{phone},#{birthday},#{type},1)
+	</insert> 
+	
+</mapper>
