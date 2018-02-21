@@ -29,7 +29,14 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
     </ul>
     <ul class="layui-nav layui-layout-right">
       <li class="layui-nav-item">
-    	${userInfo.username}
+    <c:choose>
+	   <c:when test="${not empty userInfo.username}">  
+	        ${userInfo.username}
+	   </c:when>
+	   <c:otherwise> 
+	    	${userInfo.name}
+	   </c:otherwise>
+	</c:choose>
       </li>
       <li class="layui-nav-item"><a href="<%=basePath%>/login/logout">注销</a></li>
     </ul>

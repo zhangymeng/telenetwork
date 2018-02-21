@@ -25,7 +25,7 @@ public class Customer {
 		return username;
 	}
 	public void setUsername(String username) {
-		this.username = this.name;
+		this.username = username;
 	}
 	public String getPassword() {
 		return password;

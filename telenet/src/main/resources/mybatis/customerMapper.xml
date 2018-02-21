@@ -45,8 +45,8 @@
 	</update>
 	
 	<insert id="add" parameterType="cn.dyt.po.Customer" useGeneratedKeys="true" keyProperty="id">
-	  insert into t_customer(name,sex,create_date,phone,birthday,type,is_del) 
-	  values(#{name},#{sex},#{createDate},#{phone},#{birthday},#{type},1)
+	  insert into t_customer(name,sex,create_date,phone,birthday,type,is_del,role_id,password) 
+	  values(#{name},#{sex},#{createDate},#{phone},#{birthday},#{type},1,3,"111111")
 	</insert> 
 	
 	<update id="editUser" parameterType="cn.dyt.vo.UserVo">
