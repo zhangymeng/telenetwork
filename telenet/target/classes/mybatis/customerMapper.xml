@@ -11,6 +11,8 @@
 		<result column="birthday" property="birthday"/>
 		<result column="type" property="type"/>
 		<result column="is_del" property="isDel"/>
+		<result column="role_id" property="roleId"/>
+		<result column="password" property="password"/>
 	</resultMap>
 
 	<select id="getById" resultMap="customerMap" resultType="cn.dyt.po.Customer" parameterType="java.lang.Integer">
@@ -47,4 +49,7 @@
 	  values(#{name},#{sex},#{createDate},#{phone},#{birthday},#{type},1)
 	</insert> 
 	
+	<update id="editUser" parameterType="cn.dyt.vo.UserVo">
+  	  update t_customer set password=#{password} where id=#{id}
+    </update>
 </mapper>

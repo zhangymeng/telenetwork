@@ -54,15 +54,17 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
         var $ = layui.jquery;
 
         form.on('submit(*)', function(data){
-        
-            var _url = "<%=basePath%>/user/editPwd";
-
+        	var roleId = "${roleId}";
+        	var _url = "<%=basePath%>/user/editPwd";
+        	if(roleId==3){
+        		_url = "<%=basePath%>/customer/editPwd";
+        	}
             $.post(_url, data.field, function (res) {
                 if(res.result) {
                     layer.msg("修改成功");
 
 	                setTimeout(function () {
-	                    window.location.href = "<%=basePath%>/login/basic"
+	                    window.location.href = "<%=basePath%>/login/basic";
 	                }, 1000);
 
                 } else {

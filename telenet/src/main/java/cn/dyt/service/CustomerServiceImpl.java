@@ -13,8 +13,10 @@ import cn.dyt.dao.OrderDao;
 import cn.dyt.po.Customer;
 import cn.dyt.po.CustomerType;
 import cn.dyt.po.Order;
+import cn.dyt.po.UserInfo;
 import cn.dyt.util.Tools;
 import cn.dyt.vo.IndexVo;
+import cn.dyt.vo.UserVo;
 
 @Service
 public class CustomerServiceImpl implements CustomerService {
@@ -89,6 +91,36 @@ public class CustomerServiceImpl implements CustomerService {
 			reason = "未修改";
 		}
 		return Tools.resultMap(result, reason);
+	}
+
+	@Override
+	public Map<String, Object> login(UserVo vo) {
+		boolean result = false;
+		String reason = "";
+		Customer customer = customerDao.getByPhone(vo.getUsername());
+		if(customer!=null){
+			if(vo.getPassword().equals(customer.getPassword())){
+				result = true;
+				reason = customer.getId().toString();
+			}else{
+				reason = "密码不正确";
+			}
+		}else{
+			reason = "用户不存在";
+		}
+		return Tools.resultMap(result, reason);
+	}
+
+	@Override
+	public Customer getById(Integer id) {
+		Customer cu = customerDao.getById(id);
+		return cu;
+	}
+
+	@Override
+	public Integer editUser(UserVo vo) {
+		Integer count = customerDao.editUser(vo);
+		return count;
 	}
 
 }

@@ -18,7 +18,9 @@ import cn.dyt.po.CustomerType;
 import cn.dyt.po.UserInfo;
 import cn.dyt.service.CustomerService;
 import cn.dyt.service.CustomerTypeService;
+import cn.dyt.util.Tools;
 import cn.dyt.vo.IndexVo;
+import cn.dyt.vo.UserVo;
 
 @Controller
 @RequestMapping("/customer")
@@ -84,6 +86,42 @@ public class CustomerController {
 		}
         return map;
     }
+	
+	/**
+	 * 修改密码
+	 * @param vo
+	 * @param request
+	 * @return
+	 */
+	@RequestMapping("/editPwd")
+	@ResponseBody
+    public Map<String,Object> editPwd(UserVo vo,HttpServletRequest request){
+		 Map<String,Object> map = new HashMap<String,Object>();
+		 Customer user = (Customer)request.getSession().getAttribute("user");
+		if(user!=null){
+			if(vo.getPassword().equals(vo.getPasswords())){
+				int id = user.getId();
+				vo.setId(id);
+				if(user.getPassword().equals(vo.getOldPassword())){
+					Integer count = customerService.editUser(vo);
+					if(count>0){
+						map.put("result", true);
+						
+						Customer userInfo = customerService.getById(id);
+						request.getSession().setAttribute("user", userInfo);
+					}else{
+						map = Tools.resultMap(false, "新密码与旧密码相同");
+					}
+				}else{
+					map = Tools.resultMap(false, "旧密码不正确");
+				}
+			}else{
+				map = Tools.resultMap(false, "两次新密码不一致");
+			}
+		 }
+		 return map;
+    }
+	
 	
 	@RequestMapping("/typePage")
     public ModelAndView typePage(HttpServletRequest request,IndexVo vo){

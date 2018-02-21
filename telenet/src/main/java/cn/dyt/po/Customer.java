@@ -13,9 +13,32 @@ public class Customer {
 	private String createDate;
 	private String birthday;
 	private Integer type;
+	private String password;
+	private Integer roleId;
+	
 	private String sexStr;
 	private String typeStr;
 	
+	private String username;
+	
+	public String getUsername() {
+		return username;
+	}
+	public void setUsername(String username) {
+		this.username = this.name;
+	}
+	public String getPassword() {
+		return password;
+	}
+	public void setPassword(String password) {
+		this.password = password;
+	}
+	public Integer getRoleId() {
+		return roleId;
+	}
+	public void setRoleId(Integer roleId) {
+		this.roleId = roleId;
+	}
 	public String getTypeStr() {
 		return typeStr;
 	}

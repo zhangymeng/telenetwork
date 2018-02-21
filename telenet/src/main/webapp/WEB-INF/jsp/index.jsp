@@ -23,7 +23,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
       <li class="layui-nav-item">
         <a href="javascript:;">个人中心</a>
         <dl class="layui-nav-child">
-          <dd><a href="javascript:void(0);" onclick="toPage(this)" data-url="<%=basePath%>/user/editPwdPage">修改密码</a></dd>
+          <dd><a href="javascript:void(0);" onclick="toPage(this)" data-url="<%=basePath%>/user/editPwdPage?roleId=${userInfo.roleId}">修改密码</a></dd>
         </dl>
       </li>
     </ul>

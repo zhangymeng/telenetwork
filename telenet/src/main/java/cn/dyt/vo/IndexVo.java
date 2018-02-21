@@ -11,7 +11,16 @@ public class IndexVo {
 	private Integer cId;
 	private Integer type;
 	private String name;
+	private Integer prefId;
 	
+	public Integer getPrefId() {
+		return prefId;
+	}
+
+	public void setPrefId(Integer prefId) {
+		this.prefId = prefId;
+	}
+
 	public String getPassword() {
 		return password;
 	}

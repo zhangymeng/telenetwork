@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.dyt.dao.PreferentialDao">
+	
+	<resultMap  id="preferentialMap" type="cn.dyt.po.Preferential">
+		<id column="id" property="id"/>
+		<result column="title" property="title"/>
+		<result column="type" property="type"/>
+		<result column="is_del" property="isDel"/>
+		<result column="conditions" property="conditions"/>
+		<result column="pref" property="pref"/>
+	</resultMap>
+
+	<select id="getById" resultMap="preferentialMap" resultType="cn.dyt.po.Preferential" parameterType="java.lang.Integer">
+	  select * from t_preferential where id=#{id}
+	</select>
+    
+    <select id="findAll" resultMap="preferentialMap" resultType="cn.dyt.po.Preferential" parameterType="cn.dyt.vo.IndexVo">
+	  select * from t_preferential where is_del=1
+	</select>
+	
+	<update id="del" parameterType="cn.dyt.vo.IndexVo">
+		 update t_preferential set is_del=0 where id=#{id}
+	</update>
+	
+	<insert id="add" parameterType="cn.dyt.vo.OrderVo" useGeneratedKeys="true" keyProperty="id">
+	  insert into t_preferential(title,type,is_del,conditions,pref) 
+	  values(#{title},#{type},1,#{conditions},#{pref})
+	</insert> 
+	
+	<update id="edit" parameterType="cn.dyt.vo.OrderVo">
+  	  update t_preferential
+  	  <trim prefix="set" suffixOverrides=",">
+	  	<if test="title!=null" >
+	    	 title=#{title},
+	    </if>
+	  	<if test="type!=null" >
+	    	type=#{type},
+	    </if>
+	  	<if test="conditions!=null" >
+	    	conditions=#{conditions},
+	    </if>
+	  	<if test="pref!=null" >
+	    	pref=#{pref},
+	    </if>
+	  </trim>
+	  where id=#{id}
+    </update>
+	
+</mapper>

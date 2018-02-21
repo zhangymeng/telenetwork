@@ -31,8 +31,9 @@ public class UserController {
 	 * @return
 	 */
 	@RequestMapping("/editPwdPage")
-	public ModelAndView editPwdPage(HttpServletRequest request){
+	public ModelAndView editPwdPage(HttpServletRequest request,Integer roleId){
 	    ModelMap model = new ModelMap();
+	    model.addAttribute("roleId", roleId);
 	    return new ModelAndView("editPwdPage", model);
 	}
 	

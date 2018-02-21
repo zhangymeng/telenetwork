@@ -100,6 +100,10 @@ form.on('submit(demo1)', function(data){
 	var username = data.field.username;
 	var password = data.field.password;
 	var dId = parseInt(data.field.dId);
+	if(!isNaN(username)){
+		layer.msg("用户名不能为全数字");
+		return false;
+	}
     $.ajax({
 		url: "<%=basePath%>user/add",
         data: {

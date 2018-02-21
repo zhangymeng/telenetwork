@@ -7,6 +7,15 @@ public class Preferential {
 	private Integer isDel;
 	private Integer conditions;
 	private Integer pref;
+	
+	private String typeStr;
+	
+	public String getTypeStr() {
+		return typeStr;
+	}
+	public void setTypeStr(String typeStr) {
+		this.typeStr = typeStr;
+	}
 	public Integer getId() {
 		return id;
 	}

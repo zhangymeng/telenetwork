@@ -20,6 +20,9 @@
 	  <if test="timeText!=null">
 	  	and ${timeText}
 	  </if>
+	  <if test="prefId!=null">
+	  	and pref_id=#{prefId}
+	  </if>
 	</select>
 	
 </mapper>
