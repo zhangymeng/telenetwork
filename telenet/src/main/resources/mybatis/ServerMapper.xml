@@ -36,6 +36,10 @@
 	  </if>
 	</select>
 	
+	<select id="getById" resultMap="serverMap" resultType="cn.dyt.po.Server" parameterType="java.lang.Integer">
+	  select * from t_server where id=#{id}
+	</select>
+	
 	<update id="del" parameterType="cn.dyt.vo.OrderVo">
 		 update t_server set is_del=0 where id=#{id}
 	</update>

@@ -5,18 +5,31 @@
 	<resultMap  id="logMap" type="cn.dyt.po.LogInfo">
 		<id column="id" property="id"/>
 		<result column="s_id" property="sId"/>
+		<result column="c_id" property="cId"/>
 		<result column="create_date" property="createDate"/>
 		<result column="note" property="note"/>
 		<result column="admin_id" property="adminId"/>
+		<result column="is_del" property="isDel"/>
+		<association  property="customer" javaType="cn.dyt.po.Customer">
+            <id column="id" property="id"/>
+           	<result column="name" property="name"/>
+			<result column="sex" property="sex"/>
+			<result column="create_date" property="createDate"/>
+			<result column="phone" property="phone"/>
+        </association>
+        <association  property="userInfo" javaType="cn.dyt.po.UserInfo">
+            <id column="id" property="id"/>
+           	<result column="username" property="username"/>
+        </association>
 	</resultMap>
 	
 	<select id="findAll" resultMap="logMap" resultType="cn.dyt.po.LogInfo" parameterType="cn.dyt.vo.IndexVo">
-	  select * from t_log
+	  select * from t_log a left join t_customer b on a.c_id=b.id left join t_user c on a.admin_id=c.id where a.is_del=1
 	</select>
 
-	<delete id="del" parameterType="cn.dyt.vo.IndexVo">
-		delete from t_log where id=#{id}
-	</delete>
+	<update id="del" parameterType="cn.dyt.vo.IndexVo">
+		 update t_log set is_del=0 where id=#{id}
+	</update>
 	
 	<insert id="add" parameterType="cn.dyt.vo.OrderVo" useGeneratedKeys="true" keyProperty="id">
 	  insert into t_log(s_id,create_date,note,admin_id) 

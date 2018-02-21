@@ -14,4 +14,6 @@ public interface ServerDao {
 
 	Integer add(OrderVo vo);
 
+	Server getById(Integer id);
+
 }

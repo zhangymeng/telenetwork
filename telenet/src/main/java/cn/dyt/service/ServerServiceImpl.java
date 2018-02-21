@@ -48,7 +48,9 @@ public class ServerServiceImpl implements ServerService {
 		//删除server
 		serverDao.del(vo);
 		//添加log
+		Server ser = serverDao.getById(vo.getId());
 		vo.setsId(vo.getId());
+		vo.setcId(ser.getcId());
 		Timestamp createDate = new Timestamp(System.currentTimeMillis());//当前时间
 		vo.setCreateDate(createDate);
 		logDao.add(vo);
