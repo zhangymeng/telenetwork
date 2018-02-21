@@ -16,6 +16,28 @@ public class OrderVo {
 	private Timestamp startDate;
 	private Timestamp endDate;
 	
+	private String note;
+	private Integer sId;
+	private Integer adminId;
+	
+	public Integer getsId() {
+		return sId;
+	}
+	public void setsId(Integer sId) {
+		this.sId = sId;
+	}
+	public Integer getAdminId() {
+		return adminId;
+	}
+	public void setAdminId(Integer adminId) {
+		this.adminId = adminId;
+	}
+	public String getNote() {
+		return note;
+	}
+	public void setNote(String note) {
+		this.note = note;
+	}
 	public Integer getMoney() {
 		return money;
 	}

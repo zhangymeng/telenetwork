@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.dyt.dao.ServerDao">
+	
+	<resultMap  id="serverMap" type="cn.dyt.po.Server">
+		<id column="id" property="id"/>
+		<result column="note" property="note"/>
+		<result column="c_id" property="cId"/>
+		<result column="type" property="type"/>
+		<result column="is_del" property="isDel"/>
+		<result column="create_date" property="createDate"/>
+		<association  property="customer" javaType="cn.dyt.po.Customer">
+            <id column="id" property="id"/>
+           	<result column="name" property="name"/>
+			<result column="sex" property="sex"/>
+			<result column="create_date" property="createDate"/>
+			<result column="phone" property="phone"/>
+			<result column="birthday" property="birthday"/>
+			<result column="type" property="type"/>
+			<result column="is_del" property="isDel"/>
+			<result column="role_id" property="roleId"/>
+			<result column="password" property="password"/>
+        </association>
+	</resultMap>
+    
+    <select id="findAll" resultMap="serverMap" resultType="cn.dyt.po.Server" parameterType="cn.dyt.vo.IndexVo">
+	  select * from t_server a left join t_customer b on a.c_id=b.id where 1=1
+	  <if test="isDel!=null">
+	  and a.is_del=#{isDel}
+	  </if>
+	  <if test="type!=null">
+	  and a.type=#{type}
+	  </if>
+	  <if test="cId!=null">
+	  and a.c_id=#{cId}
+	  </if>
+	</select>
+	
+	<update id="del" parameterType="cn.dyt.vo.OrderVo">
+		 update t_server set is_del=0 where id=#{id}
+	</update>
+	
+	<insert id="add" parameterType="cn.dyt.vo.OrderVo" useGeneratedKeys="true" keyProperty="id">
+	  insert into t_server(note,c_id,is_del,type,create_date) 
+	  values(#{note},#{cId},1,#{type},#{createDate})
+	</insert> 
+	
+	<update id="edit" parameterType="cn.dyt.vo.OrderVo">
+  	  update t_server
+  	  <trim prefix="set" suffixOverrides=",">
+	  	<if test="note!=null" >
+	    	 note=#{note},
+	    </if>
+	  	<if test="type!=null" >
+	    	type=#{type},
+	    </if>
+	  </trim>
+	  where id=#{id}
+    </update>
+	
+</mapper>

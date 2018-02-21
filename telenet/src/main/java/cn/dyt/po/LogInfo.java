@@ -7,7 +7,14 @@ public class LogInfo {
 	private Integer sId;
 	private Timestamp createDate;
 	private String note;
+	private Integer adminId;
 	
+	public Integer getAdminId() {
+		return adminId;
+	}
+	public void setAdminId(Integer adminId) {
+		this.adminId = adminId;
+	}
 	public Integer getId() {
 		return id;
 	}

@@ -12,7 +12,16 @@ public class IndexVo {
 	private Integer type;
 	private String name;
 	private Integer prefId;
-	
+	private Integer isDel;
+
+	public Integer getIsDel() {
+		return isDel;
+	}
+
+	public void setIsDel(Integer isDel) {
+		this.isDel = isDel;
+	}
+
 	public Integer getPrefId() {
 		return prefId;
 	}
