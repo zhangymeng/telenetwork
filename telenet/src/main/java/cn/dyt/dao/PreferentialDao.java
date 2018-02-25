@@ -16,4 +16,6 @@ public interface PreferentialDao {
 
 	Integer edit(OrderVo vo);
 
+	Preferential getById(Integer id);
+
 }

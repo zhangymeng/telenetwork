@@ -112,6 +112,11 @@ public class Tools {
 		return df.format(createDate);
 	}
 	
+	public static String foarmatMonthDate(Timestamp createDate) {
+		SimpleDateFormat df = new SimpleDateFormat("yyyy-MM");// 设置日期格式
+		return df.format(createDate);
+	}
+	
 	public static Date getUtilDate(String datestr, String format) {
         SimpleDateFormat dateFormat = new SimpleDateFormat(format);// 定义日期格式
         Date date = null;
@@ -524,6 +529,17 @@ public class Tools {
         
         //日期格式 
     	Date date = new Date();//当前日期
+    	SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");//格式化对�?
+    	Calendar calendar = Calendar.getInstance();//日历对象
+    	calendar.setTime(date);//设置当前日期
+    	calendar.add(Calendar.MONTH, n);//月份�?
+    	String str = sdf.format(calendar.getTime());//输出格式化的日期 
+    	return Timestamp.valueOf(str);
+      }
+    
+    public static Timestamp mathTimetamp(Date date,int n/*加减月数*/) throws ParseException{ 
+        
+        //日期格式 
     	SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");//格式化对�?
     	Calendar calendar = Calendar.getInstance();//日历对象
     	calendar.setTime(date);//设置当前日期

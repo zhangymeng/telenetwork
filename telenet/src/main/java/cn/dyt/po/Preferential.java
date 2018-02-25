@@ -7,7 +7,7 @@ public class Preferential {
 	private Integer isDel;
 	private Integer conditions;
 	private Integer pref;
-	
+
 	private String typeStr;
 	
 	public String getTypeStr() {

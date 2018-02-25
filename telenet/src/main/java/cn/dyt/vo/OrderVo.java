@@ -19,7 +19,22 @@ public class OrderVo {
 	private String note;
 	private Integer sId;
 	private Integer adminId;
+
+	private String phone;
+	private Integer num;
 	
+	public String getPhone() {
+		return phone;
+	}
+	public void setPhone(String phone) {
+		this.phone = phone;
+	}
+	public Integer getNum() {
+		return num;
+	}
+	public void setNum(Integer num) {
+		this.num = num;
+	}
 	public Integer getsId() {
 		return sId;
 	}

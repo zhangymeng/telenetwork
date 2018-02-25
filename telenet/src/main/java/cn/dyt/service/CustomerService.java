@@ -24,4 +24,6 @@ public interface CustomerService {
 
 	Integer editUser(UserVo vo);
 
+	Customer getByPhone(String phone);
+
 }

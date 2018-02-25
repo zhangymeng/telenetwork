@@ -20,7 +20,7 @@
 	</select>
 	
 	<select id="getByPhone" resultMap="customerMap" resultType="cn.dyt.po.Customer" parameterType="java.lang.String">
-	  select * from t_customer where phone=#{phone} limit 1
+	  select * from t_customer where phone=#{phone} and is_del=1 limit 1
 	</select>
 	
 	<update id="edit" parameterType="cn.dyt.po.Customer">

@@ -13,6 +13,33 @@ public class IndexVo {
 	private String name;
 	private Integer prefId;
 	private Integer isDel;
+	private Integer num;
+	private Integer money;
+	private Integer conditions;
+
+	public Integer getConditions() {
+		return conditions;
+	}
+
+	public void setConditions(Integer conditions) {
+		this.conditions = conditions;
+	}
+
+	public Integer getNum() {
+		return num;
+	}
+
+	public void setNum(Integer num) {
+		this.num = num;
+	}
+
+	public Integer getMoney() {
+		return money;
+	}
+
+	public void setMoney(Integer money) {
+		this.money = money;
+	}
 
 	public Integer getIsDel() {
 		return isDel;

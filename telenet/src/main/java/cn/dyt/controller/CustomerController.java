@@ -159,4 +159,11 @@ public class CustomerController {
 		}
         return map;
     }
+	
+	@RequestMapping("/getByPhone")
+	@ResponseBody
+    public Customer getByPhone(HttpServletRequest request,String phone){
+		Customer cu = customerService.getByPhone(phone);
+        return cu;
+    }
 }

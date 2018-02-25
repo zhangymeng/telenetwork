@@ -52,7 +52,7 @@ public class CustomerServiceImpl implements CustomerService {
 		//查看订单，是否到期
 		Timestamp createDate = new Timestamp(System.currentTimeMillis());//当前时间
 		String cd = Tools.foarmatDateTime(createDate);
-		vo.setTimeText("unix_timestamp('"+cd+"')<unix_timestamp(end_date)");
+		vo.setTimeText("unix_timestamp('"+cd+"')<unix_timestamp(a.end_date)");
 		vo.setcId(vo.getId());
 		List<Order> list = orderDao.findAll(vo);
 		if(list.size()>0){
@@ -121,6 +121,19 @@ public class CustomerServiceImpl implements CustomerService {
 	public Integer editUser(UserVo vo) {
 		Integer count = customerDao.editUser(vo);
 		return count;
+	}
+
+	@Override
+	public Customer getByPhone(String phone) {
+		Customer cu = customerDao.getByPhone(phone);
+		if(cu!=null){
+			if(cu.getSex()==1){
+				cu.setSexStr("男");
+			}else{
+				cu.setSexStr("女");
+			}
+		}
+		return cu;
 	}
 
 }

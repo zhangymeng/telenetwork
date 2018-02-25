@@ -10,19 +10,50 @@
 		<result column="create_date" property="createDate"/>
 		<result column="start_date" property="startDate"/>
 		<result column="end_date" property="endDate"/>
+		<association  property="customer" javaType="cn.dyt.po.Customer">
+            <id column="id" property="id"/>
+           	<result column="name" property="name"/>
+			<result column="sex" property="sex"/>
+			<result column="create_date" property="createDate"/>
+			<result column="phone" property="phone"/>
+        </association>
+        <association  property="preferential" javaType="cn.dyt.po.Preferential">
+            <id column="id" property="id"/>
+			<result column="title" property="title"/>
+			<result column="type" property="type"/>
+			<result column="is_del" property="isDel"/>
+			<result column="conditions" property="conditions"/>
+			<result column="pref" property="pref"/>
+        </association>
 	</resultMap>
 	
 	<select id="findAll" resultMap="orderMap" resultType="cn.dyt.po.Order" parameterType="cn.dyt.vo.IndexVo">
-	  select * from t_order where 1=1
+	  select * from t_order a left join t_customer b on a.c_id=b.id left join t_preferential c on a.pref_id=c.id where 1=1
 	  <if test="cId!=null">
-	  	and c_id=#{cId}
+	  	and a.c_id=#{cId}
 	  </if>
 	  <if test="timeText!=null">
 	  	and ${timeText}
 	  </if>
 	  <if test="prefId!=null">
-	  	and pref_id=#{prefId}
+	  	and a.pref_id=#{prefId}
 	  </if>
 	</select>
 	
+	<select id="getById" resultMap="orderMap" resultType="cn.dyt.po.Order" parameterType="java.lang.Integer">
+	  select * from t_order where id=#{id}
+	</select>
+	
+	<delete id="del" parameterType="cn.dyt.vo.IndexVo">
+		delete from t_order where id=#{id}
+	</delete>
+	
+	<select id="getNew" resultMap="orderMap" resultType="cn.dyt.po.Order" parameterType="java.lang.Integer">
+	  select * from t_order where c_id=#{cId} order by start_date desc limit 1
+	</select>
+	
+	<insert id="add" parameterType="cn.dyt.vo.OrderVo" useGeneratedKeys="true" keyProperty="id">
+	  insert into t_order(money,pref_id,c_id,create_date,start_date,end_date) 
+	  values(#{money},#{prefId},#{cId},#{createDate},#{startDate},#{endDate})
+	</insert> 
 </mapper>

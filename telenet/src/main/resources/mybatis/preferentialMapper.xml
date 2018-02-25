@@ -17,6 +17,9 @@
     
     <select id="findAll" resultMap="preferentialMap" resultType="cn.dyt.po.Preferential" parameterType="cn.dyt.vo.IndexVo">
 	  select * from t_preferential where is_del=1
+	  <if test="conditions!=null">
+	  and conditions &lt;= #{conditions}
+	  </if>
 	</select>
 	
 	<update id="del" parameterType="cn.dyt.vo.IndexVo">
